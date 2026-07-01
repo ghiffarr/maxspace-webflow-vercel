@@ -1290,5 +1290,29 @@ function dragableHandler(slider, pagination) {
   window.addEventListener("touchend", onDragEnd);
 }
 </script>
+  <script>
+(function () {
+  var currentPath = window.location.pathname.replace(/\/$/, "").replace(/\.html$/, "");
+  if (currentPath === "" || currentPath === "/index") {
+    currentPath = "/index";
+  }
+  document.querySelectorAll(".nav_menu .nav_menu_link").forEach(function (link) {
+    var href = link.getAttribute("href") || "";
+    var linkPath;
+    try {
+      linkPath = new URL(href, window.location.origin).pathname.replace(/\/$/, "").replace(/\.html$/, "");
+    } catch (error) {
+      return;
+    }
+    var isCurrent = currentPath !== "/index" && linkPath === currentPath;
+    link.classList.toggle("w--current", isCurrent);
+    if (isCurrent) {
+      link.setAttribute("aria-current", "page");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+})();
+</script>
 </body>
 </html>

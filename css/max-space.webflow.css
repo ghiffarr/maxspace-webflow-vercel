@@ -1507,6 +1507,10 @@ figcaption {
   color: var(--_colors---primary);
 }
 
+.nav_menu_link[aria-current="page"] {
+  color: var(--_colors---primary) !important;
+}
+
 .nav_button {
   padding: 1rem;
 }
